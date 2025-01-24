@@ -1,0 +1,51 @@
+{
+    "app_name": "Diabetes App",
+    "nav": {
+        "home": "Home",
+        "glucose": "Glucose Readings",
+        "medications": "Medications",
+        "activity": "Physical Activity",
+        "settings": "Settings"
+    },
+    "glucose": {
+        "latest_reading": "Latest Glucose Reading",
+        "add_reading": "Add Reading",
+        "reading_value": "Glucose Value",
+        "notes": "Notes",
+        "view_all": "View All",
+        "readings_history": "Blood Glucose Reading History",
+        "date": "Date",
+        "actions": "Actions"
+    },
+    "medications": {
+        "add_new": "Add New Medication",
+        "med_name": "Medication Name",
+        "time": "Time",
+        "current_meds": "Current Medications",
+        "med_logs": "Medication Logs",
+        "taken": "Taken",
+        "not_taken": "Not Taken",
+        "status": "Status",
+        "delete_confirm": "Are you sure you want to delete this medication?"
+    },
+    "activity": {
+        "add_new": "Add Activity",
+        "activity_type": "Activity Type",
+        "duration": "Duration (minutes)",
+        "history": "Activity History"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "arabic": "Arabic",
+        "english": "English",
+        "save": "Save Changes"
+    },
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "confirm_delete": "Are you sure you want to delete?"
+    }
+}
