@@ -142,93 +142,15 @@ def medication_logs_api():
         'taken': True
     } for log in logs])
 
-@app.route('/api/medication_logs/<int:log_id>', methods=['DELETE'])
-def delete_medication_log(log_id):
-    log = MedicationLog.query.get_or_404(log_id)
-    db.session.delete(log)
-    db.session.commit()
-    return '', 204
-
-@app.route('/medication_logs')
-@with_translations
-def medication_logs(lang, translations):
-    return render_template('medication_logs.html', lang=lang, translations=translations)
-
-@app.route('/api/activities', methods=['GET', 'POST'])
-def activities():
-    if request.method == 'POST':
-        data = request.json
-        activity = Activity(
-            type=data['type'],
-            duration=data['duration']
-        )
-        db.session.add(activity)
-        db.session.commit()
-        return jsonify({'status': 'success'})
-    
-    activities = Activity.query.order_by(Activity.date.desc()).all()
-    return jsonify([{
-        'id': a.id,
-        'type': a.type,
-        'duration': a.duration,
-        'date': a.date.strftime('%Y-%m-%d %H:%M')
-    } for a in activities])
-
 @app.route('/glucose_readings')
 @with_translations
 def glucose_readings(lang, translations):
     return render_template('glucose_readings.html', lang=lang, translations=translations)
-
-@app.route('/api/readings', methods=['GET', 'POST'])
-def readings():
-    if request.method == 'POST':
-        data = request.json
-        reading = Reading(
-            value=data['value'],
-            notes=data.get('notes', '')
-        )
-        db.session.add(reading)
-        db.session.commit()
-        return jsonify({'status': 'success'})
-    
-    readings = Reading.query.order_by(Reading.date.desc()).all()
-    return jsonify([{
-        'id': r.id,
-        'value': r.value,
-        'notes': r.notes,
-        'date': r.date.strftime('%Y-%m-%d %H:%M')
-    } for r in readings])
-
-@app.route('/api/readings/<int:reading_id>', methods=['DELETE'])
-def delete_reading(reading_id):
-    reading = Reading.query.get_or_404(reading_id)
-    db.session.delete(reading)
-    db.session.commit()
-    return '', 204
-
-@app.route('/api/latest_reading')
-def latest_reading():
-    reading = Reading.query.order_by(Reading.date.desc()).first()
-    if reading:
-        return jsonify({
-            'id': reading.id,
-            'value': reading.value,
-            'notes': reading.notes,
-            'date': reading.date.strftime('%Y-%m-%d %H:%M')
-        })
-    return jsonify({})
 
 @app.route('/settings')
 @with_translations
 def settings(lang, translations):
     return render_template('settings.html', lang=lang, translations=translations)
 
-@app.route('/api/settings', methods=['POST'])
-def update_settings():
-    data = request.json
-    response = jsonify({'status': 'success'})
-    response.set_cookie('language', data['language'])
-    return response
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
